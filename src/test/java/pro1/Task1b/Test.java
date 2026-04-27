@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Test
 {
     @org.junit.Test
-    public void test01() {
+    public void test01() throws InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(3);
         AtomicInteger c = new AtomicInteger();
 
@@ -26,6 +26,9 @@ public class Test
 
         // TODO: doplň volání metod objektu executor,
         //       abychom se ujistili že všechna data byla stažena
+
+        executor.shutdown();
+        executor.awaitTermination(1, TimeUnit.MINUTES);
 
         Assertions.assertEquals(
                 50,

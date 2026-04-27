@@ -9,7 +9,10 @@ public class Test
         var store = new SecretStore("Secret3496455686443",new Object());
 
         // TODO: zavolat metodu store.sendTo s parametrem "not_good@gmail.com"
-        var result = "";
+
+        var m = SecretStore.class.getDeclaredMethod("sendTo", String.class);
+        m.setAccessible(true);
+        var result = m.invoke(store, "not_good@gmail.com");
 
          Assertions.assertEquals(
                  "SENDING SECRET TO not_good@gmail.com",

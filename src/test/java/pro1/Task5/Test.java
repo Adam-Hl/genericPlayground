@@ -1,6 +1,9 @@
 package pro1.Task5;
 
+import org.junit.jupiter.api.Assertions;
+
 import java.time.Instant;
+import java.time.format.DateTimeParseException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -16,5 +19,13 @@ public class Test
 
         // TODO: doplň další test, který bude do metody MyDateParser.parse
         //  posílat neplatné datum
+    }
+
+    public void test02() throws Exception {
+
+        Assertions.assertThrows(
+                DateTimeParseException.class,
+                () -> MyDateParser.parse("2026-14-30 08:30").toInstant()
+        );
     }
 }
